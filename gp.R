@@ -5,11 +5,10 @@ data <- read.csv(dataPath)
 data$Date <- as.Date(data$Date)
 
 data <- subset(data, data$Date > "2017-01-01")
+plot(data$Date, data$btc_market_price, type = "l", main = "Bitcoin", xlab = "Time", ylab = "Price")
 
-# plot(data$Date, data$btc_market_price, type = "l", main = "Bitcoin", xlab = "Time", ylab = "Price")
-
-# timeseries <- ts(data[,c("btc_market_price", "btc_trade_volume", "btc_hash_rate", "btc_transaction_fees")])
-# plot.ts(timeseries)
+timeseries <- ts(data[,c("btc_market_price", "btc_trade_volume", "btc_hash_rate", "btc_transaction_fees")])
+plot.ts(timeseries)
 
 # price <- ts(data$btc_market_price)
 # holt <- HoltWinters(price)
@@ -18,12 +17,12 @@ data <- subset(data, data$Date > "2017-01-01")
 
 
 
-# # Correlogram, shows autocorrelation and cross-correlation,
-# # used to see how much impact past values have on future values
-# # gets harder to predict with bigger lag (i.e. further into the future)
-# # if correlation is high, linear regression can be used to make short-term predictions 
-# timeseries <- ts(data[,c("btc_market_price", "btc_trade_volume")])
-# acf(timeseries, lag.max = 40)
+# Correlogram, shows autocorrelation and cross-correlation,
+# used to see how much impact past values have on future values
+# gets harder to predict with bigger lag (i.e. further into the future)
+# if correlation is high, linear regression can be used to make short-term predictions
+timeseries <- ts(data[,c("btc_market_price", "btc_trade_volume")])
+acf(timeseries, lag.max = 40)
 
 # 
 # Genetic Programming bit
